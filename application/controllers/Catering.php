@@ -14,8 +14,12 @@ class Catering extends CI_Controller {
 	{
 		$this->load->helper('url','form');
 		$this->load->model('catering_model');
-		$data['catering_list'] = $this->catering_model->getDataCatering();
-		$this->load->view('catering', $data);
+		if($this->session->userdata('logged_in')){
+			$session_data = $this->session->userdata('logged_in');
+			$data['level'] = $session_data['level'];
+			$data['catering_list'] = $this->catering_model->getDataCatering();
+			$this->load->view('catering', $data);
+			}
 	}
 
 	// Add a new item

@@ -40,30 +40,23 @@
 
   			<ul class="nav navbar-nav navbar-right">
   				<li class="dropdown">
-  					<a href="#" class="dropdown-toggle" data-toggle="dropdown">MENU<b class="caret"></b></a>
-  					<ul class="dropdown-menu">
-  						<li><a href="#">BERANDA</a></li>
-  						<li><a href="#">JUMLAH</a></li>
-  						<li><a href="#"></a></li>
-  						<li><a href="#"></a></li>
-  					</ul>
-  				</li>
+            <a href="<?php site_url()?>login/logout" class="dropdown-toggle" data-toggle="dropdown">LOGOUT</a>
+          </li>
   			</ul>
   		</div><!-- /.navbar-collapse -->
   	</div>
   </nav>
+</div>
   
   <div class="container">
-  	<h1></h1>
-  	</div>
+    <div class="row">
     <p>
         <a href="<?php echo base_url("index.php/catering/create/ ")?>"><button type="button" class="btn btn-info">
       <span class="glyphicon glyphicon-plus"></span>TAMBAH DATA
     </button></a>
-      </p>
-  </div>
+      </p><br>
 		     <blockquote>
-					<table class="table table-hover">
+					<table class="table table-hover table-stripped">
 						<thead>
 							<tr>
 						<th>Id</th>		
@@ -72,7 +65,9 @@
             <th>Jumlah</th>
             <th>Tanggal Pengembalian</th>
             <th>Harga</th>
+            <?php if ($level == 'admin') : ?>
 						<th>Action</th>
+          <?php endif; ?>
 					</tr>
 							</thead>
 
@@ -86,16 +81,18 @@
               <td><?php echo $value['jumlah'] ?></td>
               <td><?php echo $value['tanggal'] ?></td>
               <td><?php echo $value['harga'] ?></td>
+              <?php if ($level == 'admin') : ?>
               <td>
                 <a href="<?php echo base_url("index.php/catering/update/".$value['id']) ?>"><button type="button" class="btn btn-success"><span class="glyphicon glyphicon-edit"></span> Edit</button></a>
                 <a href="<?php echo base_url("index.php/catering/delete/".$value['id']) ?>"><button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Hapus</button></a>
               </td>
             </tr>
+          <?php endif; ?>
             
           <?php endforeach ?>
 							</tbody>
 					</table></blockquote>
-</div>
+</div></div>
 </body>
 
 </html>
