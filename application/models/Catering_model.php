@@ -3,17 +3,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Catering_model extends CI_Model {
 
- public function insertcatering()
+ public function insertcatering($data)
  {
- 
- 	$object = array(
- 		'nama' =>$this->input->post('nama'),
- 		'pinjam' =>$this->input->post('pinjam'),
- 		'jumlah' =>$this->input->post('jumlah'),
- 		'tanggal' => $this->input->post('tanggal'),
- 		'harga' =>$this->input->post('harga'),
- );
- 	$this->db->insert('catering', $object);
+ 	
+ 	$this->db->insert('catering', $data);
  }
 
 public function getDataCatering()

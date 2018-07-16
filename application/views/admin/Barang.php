@@ -12,42 +12,42 @@
         <div class="card-header">
           <i class="fa fa-area-chart"></i> Area Chart Example</div>
         <div class="card-body">
-          <?php echo form_open_multipart('Admin/create'); ?> 
-  <legend>Tambah Data </legend>
-  <?php echo validation_errors(); ?>
-  <div class="form-group">
-    <label for="">Nama</label>
-    <input type="text" class="form-control" name="nama" value="" placeholder="Input field">
-  </div>
+          <p>
+            <a href="<?php echo base_url("index.php/Admin/create/ ")?>">
+              <button type="button" class="btn btn-success">Add</button>
+            </a>
+          </p>
+            <table class="table table-hover table-stripped">
+            <thead>
+              <tr>
+            <th>Id Barang</th>   
+            <th>Nama Barang</th>
+            <th>Stock/th>
+            <th>Gambar</th>
+            <th>Action</th>
+          </tr>
+              </thead>
 
-  <div class="form-group">
-    <label for="">Pinjam</label>
-    <input type="text" class="form-control" name="pinjam" value="" placeholder="Input field">
-  </div>
+            <tbody>
+              <?php
+                foreach ($Barang_list->result_array() as $row)
+                    {
+                      echo "<tr>";
+                      echo "<td>".$row['id_barang']."</td>";
+                      echo "<td>".$row['nama_barang']."</td>";
+                      echo "<td>".$row['stock']."</td>";
+                      echo "<td><img src='".base_url().'assets/uploads/'.$row['gambar']."' width='50px' height='50px'></td>";
+    echo "<td><a href='".site_url('Barang/C_edit/'.$row['id_barang'])."'><i class='fa fa-pencil'></i></a>";
+    echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+    echo "<a href='".site_url('Barang/delete/'.$row['id_barang'])."'><i class='fa fa-trash'></i></a></td>";
+                    echo "</tr>";
 
-  <div class="form-group">
-    <label for="">Jumlah</label>
-    <input type="text" class="form-control" name="jumlah" value="" placeholder="Input field">
-  </div>
-
-  <div class="form-group">
-    <label for="">Tanggal Pengembalian</label>
-    <input type="date" class="form-control" name="tanggal" value="" placeholder="Input field">
-  </div>
-
-  <div class="form-group">
-    <label for="">Harga</label>
-    <input type="text" class="form-control" name="harga" value="" placeholder="Input field">
-  </div>
-
-  <div class="form-group">
-    <label for="">Gambar</label>
-    <input type="file" class="form-control" name="gambar" >
-  </div>
-
-  <button type="submit" class="btn btn-primary">Submit</button>
-  <?php echo form_close(); ?>
-            
+                  }
+              ?>
+          
+              </tbody>
+          </table>
+          </canvas>
         </div>
         <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
       </div>
@@ -83,5 +83,4 @@
         </div>
       </div>
     </div>
-
 

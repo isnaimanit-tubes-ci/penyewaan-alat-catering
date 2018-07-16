@@ -12,42 +12,50 @@
         <div class="card-header">
           <i class="fa fa-area-chart"></i> Area Chart Example</div>
         <div class="card-body">
-          <?php echo form_open_multipart('Admin/create'); ?> 
-  <legend>Tambah Data </legend>
-  <?php echo validation_errors(); ?>
-  <div class="form-group">
-    <label for="">Nama</label>
-    <input type="text" class="form-control" name="nama" value="" placeholder="Input field">
-  </div>
+          <p>
+            <a href="<?php echo base_url("index.php/Admin/create/ ")?>">
+              <button type="button" class="btn btn-success">Add</button>
+            </a>
+          </p>
+            <table class="table table-hover table-stripped">
+            <thead>
+              <tr>
+            <th>Id</th>   
+            <th>Nama</th>
+            <th>Pinjam</th>
+            <th>Jumlah</th>
+            <th>Tanggal Pengembalian</th>
+            <th>Harga</th>
+            <th>Gambar</th>
+            <?php if ($level == 'admin') : ?>
+            <th>Action</th>
+          <?php endif; ?>
+          </tr>
+              </thead>
 
-  <div class="form-group">
-    <label for="">Pinjam</label>
-    <input type="text" class="form-control" name="pinjam" value="" placeholder="Input field">
-  </div>
+            <tbody>
 
-  <div class="form-group">
-    <label for="">Jumlah</label>
-    <input type="text" class="form-control" name="jumlah" value="" placeholder="Input field">
-  </div>
-
-  <div class="form-group">
-    <label for="">Tanggal Pengembalian</label>
-    <input type="date" class="form-control" name="tanggal" value="" placeholder="Input field">
-  </div>
-
-  <div class="form-group">
-    <label for="">Harga</label>
-    <input type="text" class="form-control" name="harga" value="" placeholder="Input field">
-  </div>
-
-  <div class="form-group">
-    <label for="">Gambar</label>
-    <input type="file" class="form-control" name="gambar" >
-  </div>
-
-  <button type="submit" class="btn btn-primary">Submit</button>
-  <?php echo form_close(); ?>
+                        <?php foreach ($catering_list as $key => $value): ?>
+            <tr>
+              <td><?php echo $value['id'] ?></td>
+              <td><?php echo $value['nama'] ?></td>
+              <td><?php echo $value['pinjam'] ?></td>
+              <td><?php echo $value['jumlah'] ?></td>
+              <td><?php echo $value['tanggal'] ?></td>
+              <td><?php echo $value['harga'] ?></td>
+              <td><img class="img img-rounded" src="<?php echo base_url().'assets/uploads/'.$value['gambar'];?>" height="100px" width="100px" alt="Card image cap"></td>
+              <?php if ($level == 'admin') : ?>
+              <td>
+                <a href="<?php echo base_url("index.php/catering/update/".$value['id']) ?>"><button type="button" class="btn btn-success"><span class="glyphicon glyphicon-edit"></span> Edit</button></a>
+                <a href="<?php echo base_url("index.php/catering/delete/".$value['id']) ?>"><button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Hapus</button></a>
+              </td>
+            </tr>
+          <?php endif; ?>
             
+          <?php endforeach ?>
+              </tbody>
+          </table>
+          </canvas>
         </div>
         <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
       </div>
@@ -83,5 +91,4 @@
         </div>
       </div>
     </div>
-
 
